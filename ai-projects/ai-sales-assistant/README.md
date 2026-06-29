@@ -1,11 +1,23 @@
 # 🤖 AI Sales Assistant – Intelligent Commercial Assistant
 
+
 <p align="center">
 
-![](https://img.shields.io/badge/Language-English-blue?style=for-the-badge)
-![](https://img.shields.io/badge/Idioma-Español-red?style=for-the-badge)
-![](https://img.shields.io/badge/Idioma-Português-green?style=for-the-badge)
-![](https://img.shields.io/badge/Langue-Français-purple?style=for-the-badge)
+<a href="./README.md">
+    <img src="https://img.shields.io/badge/🇬🇧-English-blue?style=for-the-badge" alt="English">
+</a>
+
+<a href="./README.es.md">
+    <img src="https://img.shields.io/badge/🇪🇸-Español-red?style=for-the-badge" alt="Español">
+</a>
+
+<a href="./README.pt.md">
+    <img src="https://img.shields.io/badge/🇵🇹-Português-green?style=for-the-badge" alt="Português">
+</a>
+
+<a href="./README.fr.md">
+    <img src="https://img.shields.io/badge/🇫🇷-Français-purple?style=for-the-badge" alt="Français">
+</a>
 
 </p>
 
