@@ -295,7 +295,7 @@ Each AI project lives in its own repository and follows the same engineering sta
 
 # 🌍 Portfolio Website
 
-> Coming Soon
+> https://lucpinheiro.github.io/
 
 ---
 
