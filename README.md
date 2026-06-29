@@ -165,7 +165,7 @@ tests/
 
 | Project | Description | Status |
 |----------|-------------|--------|
-| 🤖 AI Sales Assistant | Intelligent commercial assistant | 🚧 In Progress |
+| [🤖 AI Sales Assistant](https://github.com/LucPinheiro/ai-automation-portfolio/tree/ai-sales-assistant) | Intelligent commercial assistant | 🚧 In Progress |
 | 📄 AI Document Assistant | OCR + Intelligent Document Processing | 📅 Planned |
 | 📚 Enterprise RAG Chatbot | Enterprise knowledge assistant | 📅 Planned |
 | 📊 AI Forecast Dashboard | AI-powered analytics dashboard | 📅 Planned |
