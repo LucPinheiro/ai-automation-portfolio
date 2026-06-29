@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🤖 AI Sales Assistant – Intelligent Commercial Assistant
 
 ![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python)
@@ -587,4 +587,4 @@ https://linkedin.com/in/lucianapinheiro
 
 </p>
 
->>>>>>> 5d74154766570dce29cc60c8015bd2b75ac0ac98
+
