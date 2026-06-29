@@ -76,7 +76,7 @@ SQLite / PostgreSQL
 
 # 📂 Estructura del Proyecto
 
-```
+
 ai-sales-assistant/
 
 ├── app/
@@ -138,7 +138,7 @@ Professional AI Software Engineering Portfolio built with Python, FastAPI, Large
 
 </p>
 
----
+
 
 # 🚀 About
 
@@ -150,7 +150,7 @@ The objective is to build a collection of production-inspired applications demon
 
 Every project follows a common architecture and engineering standards, allowing reusable components, scalable design and continuous evolution.
 
----
+
 
 # 🎯 Objectives
 
@@ -164,13 +164,12 @@ Every project follows a common architecture and engineering standards, allowing 
 - Automate business processes
 - Showcase production-quality architecture
 
----
+
 
 # 🏗 Development Methodology
 
 Every project follows **Spec-Driven Development (SDD)**.
 
-```
 
 Requirements
 │
@@ -192,11 +191,11 @@ Verification
 ▼
 Documentation
 
-```
+
 
 Each repository contains:
 
-```
+
 
 specs/
 architecture/
@@ -205,12 +204,7 @@ tasks/
 docs/
 tests/
 
->>>>>>> 5d74154766570dce29cc60c8015bd2b75ac0ac98
-```
 
----
-
-<<<<<<< HEAD
 # ⚙ Tecnologías
 
 ## Backend
@@ -230,8 +224,7 @@ tests/
 - SQLAlchemy
 - Pydantic
 
----
->>>>>>> 5d74154766570dce29cc60c8015bd2b75ac0ac98
+
 
 ## Frontend
 
@@ -256,6 +249,7 @@ tests/
 =======
 - Bootstrap
 - JavaScript
+
 
 ---
 
@@ -288,7 +282,7 @@ tests/
 
 ---
 
-<<<<<<< HEAD
+
 # 📑 Documentación
 
 El proyecto sigue una metodología **Spec-Driven Development (SDD)**.
@@ -471,7 +465,7 @@ Este proyecto se distribuye bajo la licencia **MIT**.
 
 # 📁 Repository Structure
 
-```
+
 
 ai-automation-portfolio/
 
@@ -484,7 +478,7 @@ ai-automation-portfolio/
 ├── assets/
 └── README.md
 
-```
+
 
 Each AI project lives in its own repository and follows the same engineering standards.
 
