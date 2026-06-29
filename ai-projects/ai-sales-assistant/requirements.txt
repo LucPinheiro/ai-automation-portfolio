@@ -1,0 +1,17 @@
+# ==========================
+# AI Sales Assistant
+# Core Dependencies
+# ==========================
+
+fastapi
+uvicorn[standard]
+
+sqlalchemy
+alembic
+
+pydantic
+pydantic-settings
+
+openai
+
+python-dotenv
