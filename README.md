@@ -161,22 +161,22 @@ tests/
 
 ---
 
-# 📂 Portfolio Projects
+# 📂 AI Projects
 
-| Project | Description | Status |
-|----------|-------------|--------|
-| [🤖 AI Sales Assistant](https://github.com/LucPinheiro/ai-automation-portfolio/tree/ai-sales-assistant) | Intelligent commercial assistant | 🚧 In Progress |
-| 📄 AI Document Assistant | OCR + Intelligent Document Processing | 📅 Planned |
-| 📚 Enterprise RAG Chatbot | Enterprise knowledge assistant | 📅 Planned |
-| 📊 AI Forecast Dashboard | AI-powered analytics dashboard | 📅 Planned |
-| 🗺 Smart Route Planner | Intelligent route optimization | 📅 Planned |
-| 💻 AI Developer Assistant | AI assistant for developers | 📅 Planned |
-| ✉ AI Email Generator | Business email generation | 📅 Planned |
-| 🎙 AI Meeting Assistant | Meeting summaries & transcription | 📅 Planned |
-| 📄 AI Resume Analyzer | CV analysis with LLMs | 📅 Planned |
-| 🛍 AI Product Recommender | Recommendation engine | 📅 Planned |
-| 📈 AI Business Assistant | Business reporting assistant | 📅 Planned |
-| 🎓 AI Learning Assistant | Intelligent learning platform | 📅 Planned |
+| Project | Description | Open | Status |
+|----------|-------------|------|--------|
+| 🤖 AI Sales Assistant | Intelligent commercial assistant | [📁 View Project](https://github.com/LucPinheiro/ai-automation-portfolio/tree/main/ai-projects/ai-sales-assistant) | 🚧 In Progress |
+| 📄 AI Document Assistant | OCR + Intelligent Document Processing | Coming Soon | 📅 Planned |
+| 📚 Enterprise RAG Chatbot | Enterprise knowledge assistant | Coming Soon | 📅 Planned |
+| 📊 AI Forecast Dashboard | AI-powered analytics dashboard | Coming Soon | 📅 Planned |
+| 🗺 Smart Route Planner | Intelligent route optimization | Coming Soon | 📅 Planned |
+| 💻 AI Developer Assistant | AI assistant for developers | Coming Soon | 📅 Planned |
+| ✉ AI Email Generator | Business email generation | Coming Soon | 📅 Planned |
+| 🎙 AI Meeting Assistant | Meeting summaries & transcription | Coming Soon | 📅 Planned |
+| 📄 AI Resume Analyzer | CV analysis with LLMs | Coming Soon | 📅 Planned |
+| 🛍 AI Product Recommender | Recommendation engine | Coming Soon | 📅 Planned |
+| 📈 AI Business Assistant | Business reporting assistant | Coming Soon | 📅 Planned |
+| 🎓 AI Learning Assistant | Intelligent learning platform | Coming Soon | 📅 Planned |
 
 ---
 
