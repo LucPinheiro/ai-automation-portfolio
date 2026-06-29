@@ -163,9 +163,10 @@ tests/
 
 # 📂 Portfolio Projects
 
+
 | Project | Description | Status |
 |----------|-------------|--------|
-| 🤖 AI Sales Assistant | Intelligent commercial assistant | 🚧 In Progress |
+| [🤖 AI Sales Assistant](./ai-projects/ai-sales-assistant/) | Intelligent commercial assistant | 🚧 In Progress |
 | 📄 AI Document Assistant | OCR + Intelligent Document Processing | 📅 Planned |
 | 📚 Enterprise RAG Chatbot | Enterprise knowledge assistant | 📅 Planned |
 | 📊 AI Forecast Dashboard | AI-powered analytics dashboard | 📅 Planned |
@@ -177,6 +178,7 @@ tests/
 | 🛍 AI Product Recommender | Recommendation engine | 📅 Planned |
 | 📈 AI Business Assistant | Business reporting assistant | 📅 Planned |
 | 🎓 AI Learning Assistant | Intelligent learning platform | 📅 Planned |
+
 
 ---
 
