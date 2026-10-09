@@ -294,7 +294,7 @@ https://lucpinheiro.github.io/
 
 LinkedIn:
 
-https://linkedin.com/in/lucianapinheiro
+https://linkedin.com/in/lupinheiroDev
 
 ---
 
