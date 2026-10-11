@@ -4,7 +4,9 @@
     {
       "src": "ai_sales_assistant/app/main.py",
       "use": "@vercel/python",
-      "config": { "includeFiles": "ai_sales_assistant/**" }
+      "config": {
+        "runtime": "python3.9"
+      }
     }
   ],
   "routes": [
