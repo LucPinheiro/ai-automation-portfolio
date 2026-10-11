@@ -211,7 +211,7 @@ This project follows **Spec-Driven Development (SDD)**.
 
 | Project | Description | Status |
 |----------|-------------|--------|
-| [🤖 AI Sales Assistant](./ai-projects/ai-sales-assistant/) | Intelligent commercial assistant | 🚧 In Progress |
+| [🤖 AI Sales Assistant](./ai_sales_assistant/) | Intelligent commercial assistant | ✅ Done |
 | 📄 AI Document Assistant | OCR + Intelligent Document Processing | 📅 Planned |
 | 📚 Enterprise RAG Chatbot | Enterprise knowledge assistant | 📅 Planned |
 | 📊 AI Forecast Dashboard | AI-powered analytics dashboard | 📅 Planned |
