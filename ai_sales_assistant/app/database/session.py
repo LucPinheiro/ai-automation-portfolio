@@ -8,6 +8,10 @@ from app.config import get_settings
 
 
 def build_engine(database_url: str) -> Engine:
+    # 🛠️ PARCHE CLAVE: Convierte postgres:// a postgresql:// para Vercel/Supabase
+    if database_url and database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
+
     # SQLite connections are shared across FastAPI's threadpool workers.
     connect_args = {"check_same_thread": False} if database_url.startswith("sqlite") else {}
     return create_engine(database_url, connect_args=connect_args, pool_pre_ping=True)
