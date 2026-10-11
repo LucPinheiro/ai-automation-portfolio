@@ -3,7 +3,8 @@
   "builds": [
     {
       "src": "ai_sales_assistant/app/main.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": { "includeFiles": "ai_sales_assistant/**" }
     }
   ],
   "routes": [
