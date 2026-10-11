@@ -1,0 +1,65 @@
+{% extends "auth_base.html" %}
+{% from "_icons.html" import person_icon %}
+{% block title %}{{ t("auth.login.title") }} · {{ app_name }}{% endblock %}
+{% block heading %}{{ t("auth.login.title") }}{% endblock %}
+
+{% block form %}
+  {% if notice %}<div class="alert alert-info small py-2" role="status">{{ notice }}</div>{% endif %}
+  {% if current_user and current_user.is_guest %}
+    <div class="alert alert-light border small py-2" role="status">{{ t("auth.login.guest_notice") }}</div>
+  {% endif %}
+
+  {# A real form: it works with a plain POST even if JavaScript does not load; auth.js enhances it.
+     The demo values are public and only open a guest session: nothing is stored for them. #}
+  <form id="login-form" class="login-form" method="post" action="/login" data-next="{{ next_path }}" novalidate>
+    <input type="hidden" name="next" value="{{ next_path }}">
+    <div class="alert alert-danger {% if not form_error %}d-none{% endif %}" role="alert" data-form-error>{{ form_error or "" }}</div>
+    <div class="alert alert-success d-none" role="status" data-form-success></div>
+
+    <div class="access-field">
+      <label for="identifier" class="form-label">{{ t("auth.login.identifier") }}</label>
+      <input id="identifier" name="identifier" type="text" class="form-control access-input"
+             placeholder="{{ t('auth.login.identifier') }}" value="{{ identifier_value }}" autocomplete="username"
+             autocapitalize="none" spellcheck="false" maxlength="{{ auth_limits.email }}" required
+             {% if not identifier_value %}autofocus{% endif %}>
+      <div class="invalid-feedback" data-error-for="identifier"></div>
+    </div>
+    <div class="access-field">
+      <label for="password" class="form-label">{{ t("auth.login.password") }}</label>
+      <input id="password" name="password" type="password" class="form-control access-input"
+             placeholder="{{ t('auth.login.password') }}" value="{{ password_value }}" autocomplete="current-password"
+             maxlength="{{ auth_limits.password_max }}" required
+             {% if identifier_value and not password_value %}autofocus{% endif %}>
+      <div class="invalid-feedback" data-error-for="password"></div>
+    </div>
+
+    {% if demo %}
+      <p class="demo-hint" id="demo-hint">{{ t("auth.login.demo_hint", username=demo.username, password=demo.password) }}</p>
+    {% endif %}
+
+    <button id="login-button" type="submit" class="btn-access-primary">
+      <span class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
+      <span class="button-label">{{ t("auth.login.submit") }}</span>
+    </button>
+  </form>
+
+  <p class="access-secondary-links">
+    <a href="/forgot-password" id="forgot-link">{{ t("auth.login.forgot") }}</a>
+    <a href="/register" id="register-link">{{ t("auth.login.register") }}</a>
+  </p>
+
+  {% if current_user and current_user.is_guest %}
+    <div class="access-guest">
+      <a href="/app" class="guest-link">{{ person_icon(14) }}<span>{{ t("auth.login.guest_continue") }}</span></a>
+    </div>
+  {% elif guest_mode_enabled %}
+    <form id="guest-form" method="post" action="/guest" class="access-guest">
+      <button id="guest-button" type="submit" class="guest-link" aria-describedby="guest-hint">
+        <span class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
+        {{ person_icon(14) }}<span class="button-label">{{ t("auth.login.guest") }}</span>
+      </button>
+      <p class="guest-hint" id="guest-hint">{{ t("auth.login.guest_hint", limit=guest_max_generations) }}</p>
+      <div id="guest-error" class="alert alert-danger small py-2 mt-2 mb-0 d-none" role="alert"></div>
+    </form>
+  {% endif %}
+{% endblock %}

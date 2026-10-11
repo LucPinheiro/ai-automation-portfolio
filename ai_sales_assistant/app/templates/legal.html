@@ -1,0 +1,15 @@
+{% extends "public_base.html" %}
+{% block title %}{{ t("legal.title") }} · {{ app_name }}{% endblock %}
+{% block page_title %}{{ t("legal.title") }}{% endblock %}
+
+{# Structure only. The legal details (owner, tax id, address, registry...) are not defined yet
+   and must not be invented: each section shows "Pendiente de completar" until they are. #}
+{% block page_content %}
+<p class="public-lead">{{ t("public.updated") }}</p>
+{% for key in ["legal.owner", "legal.purpose", "legal.terms", "legal.ip", "legal.liability", "legal.law"] %}
+  <section class="public-section" data-section="{{ key }}">
+    <h2>{{ t(key) }}</h2>
+    <p class="public-pending">{{ t("public.pending") }}</p>
+  </section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+{% from "_icons.html" import footer_icon %}
+
+{% macro select_field(name, label, options) %}
+  <div class="col-sm-6">
+    <label for="{{ name }}" class="form-label">{{ label }}</label>
+    <select id="{{ name }}" name="{{ name }}" class="form-select" required>
+      {% for value, text in options.items() %}
+        <option value="{{ value }}">{{ text }}</option>
+      {% endfor %}
+    </select>
+    <div class="invalid-feedback" data-error-for="{{ name }}"></div>
+  </div>
+{% endmacro %}
+
+{% macro text_field(name, label, placeholder, col="col-sm-6", required=True) %}
+  <div class="{{ col }}">
+    <label for="{{ name }}" class="form-label">{{ label }}{% if not required %} <span class="text-body-secondary small">{{ t("gen.optional") }}</span>{% endif %}</label>
+    <input id="{{ name }}" name="{{ name }}" type="text" class="form-control"
+           placeholder="{{ placeholder }}" maxlength="{{ max_lengths[name] }}" {% if required %}required{% endif %}>
+    <div class="invalid-feedback" data-error-for="{{ name }}"></div>
+  </div>
+{% endmacro %}
+
+{% block content %}
+<div class="row g-4">
+  <section class="col-lg-5" aria-labelledby="form-title">
+    <div id="form-card" class="card shadow-sm h-100">
+      <div class="card-body p-4">
+        <h2 id="form-title" class="h5 mb-3">{{ t("js.gen.new_title") }}</h2>
+
+        {% if current_user.is_guest %}
+          <p class="small text-body-secondary mb-3" id="guest-notice">
+            {{ t("gen.guest_notice", limit=guest_max_generations) }}
+            <a href="/register">{{ t("gen.guest_register") }}</a> {{ t("gen.guest_keep") }}
+          </p>
+        {% endif %}
+
+        <div id="edit-banner" class="alert alert-info py-2 small d-none" role="status">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <span>{{ t("gen.editing") }} <strong id="edit-banner-label"></strong>. {{ t("gen.editing_note") }}</span>
+            <button id="cancel-edit" type="button" class="btn btn-sm btn-outline-secondary">{{ t("gen.cancel_edit") }}</button>
+          </div>
+        </div>
+
+        <form id="generate-form" novalidate>
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="content_type" class="form-label">{{ t("gen.content_type") }}</label>
+              <select id="content_type" name="content_type" class="form-select" required>
+                {% for value, text in content_types.items() %}
+                  <option value="{{ value }}">{{ text }}</option>
+                {% endfor %}
+              </select>
+              <div class="invalid-feedback" data-error-for="content_type"></div>
+            </div>
+
+            {{ text_field("customer", t("js.gen.customer"), t("gen.placeholder.customer")) }}
+            {{ text_field("company", t("js.gen.company"), t("gen.placeholder.company")) }}
+            {{ text_field("industry", t("js.gen.industry"), t("gen.placeholder.industry")) }}
+            {{ text_field("product_or_service", t("js.gen.product"), t("gen.placeholder.product")) }}
+
+            {# Optional: only pre-fills the recipient of «Enviar por correo»; never sent to the AI. #}
+            <div class="col-12">
+              <label for="customer_email" class="form-label">{{ t("gen.customer_email") }} <span class="text-body-secondary small">{{ t("gen.optional") }}</span></label>
+              <input id="customer_email" name="customer_email" type="email" class="form-control" autocomplete="off"
+                     placeholder="{{ t('gen.placeholder.customer_email') }}" maxlength="{{ auth_limits.email }}">
+              <div class="invalid-feedback" data-error-for="customer_email"></div>
+            </div>
+
+            <div class="col-12">
+              <label for="customer_needs" class="form-label">{{ t("gen.customer_needs") }}</label>
+              <textarea id="customer_needs" name="customer_needs" class="form-control" rows="4"
+                        placeholder="{{ t('gen.placeholder.customer_needs') }}"
+                        maxlength="{{ max_lengths['customer_needs'] }}" required></textarea>
+              <div class="form-text text-end"><span id="customer_needs-count">0</span> / {{ max_lengths['customer_needs'] }}</div>
+              <div class="invalid-feedback" data-error-for="customer_needs"></div>
+            </div>
+
+            {# Pricing: the backend calculates the discount (GET /api/v1/pricing/discount); the browser only shows it. #}
+            <div class="col-sm-6">
+              <label for="price" class="form-label">{{ t("gen.price") }} <span class="text-body-secondary small">{{ t("gen.optional") }}</span></label>
+              <input id="price" name="price" type="text" inputmode="decimal" class="form-control" placeholder="179"
+                     autocomplete="off">
+              <div class="invalid-feedback" data-error-for="price"></div>
+            </div>
+            <div class="col-sm-6">
+              <label for="discount_percent" class="form-label">{{ t("gen.discount") }} <span class="text-body-secondary small">{{ t("gen.optional") }}</span></label>
+              <input id="discount_percent" name="discount_percent" type="text" inputmode="decimal" class="form-control"
+                     placeholder="15" autocomplete="off">
+              <div class="invalid-feedback" data-error-for="discount_percent"></div>
+            </div>
+            <div class="col-12">
+              <div id="pricing-preview" class="pricing-preview d-none" aria-live="polite"></div>
+            </div>
+
+            {# Sender of the communication: used to sign it. Empty means no name is added. #}
+            {{ text_field("salesperson", t("js.gen.salesperson"), t("gen.placeholder.salesperson"), required=False) }}
+            {{ text_field("salesperson_company", t("js.gen.salesperson_company"), t("gen.placeholder.salesperson_company"), required=False) }}
+
+            {{ select_field("language", t("gen.language"), languages) }}
+            {{ select_field("tone", t("gen.tone"), tones) }}
+
+            <div class="col-12 d-grid">
+              <button id="generate-button" type="submit" class="btn btn-primary btn-lg">
+                <span class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
+                <span class="button-label">{{ t("js.gen.submit") }}</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-lg-7" aria-labelledby="result-title" aria-live="polite">
+    <div class="card shadow-sm h-100">
+      <div class="card-body p-4 d-flex flex-column">
+        <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+          <h2 id="result-title" class="h5 mb-0">{{ t("gen.result") }}</h2>
+          <div class="d-flex gap-2" id="result-actions">
+            <button id="copy-result" type="button" class="btn btn-sm btn-outline-primary" data-copy-target="result-content" disabled>
+              {{ t("gen.copy") }}
+            </button>
+            {# Share the result: links whose href app.js fills in with each new result. #}
+            <a id="share-email" class="btn btn-sm btn-outline-primary btn-share disabled" role="button" aria-disabled="true"
+               title="{{ t('gen.share_email') }}" aria-label="{{ t('gen.share_email') }}">{{ footer_icon("email", size=16) }}</a>
+            <a id="share-whatsapp" class="btn btn-sm btn-outline-primary btn-share disabled" role="button" aria-disabled="true"
+               target="_blank" rel="noopener noreferrer"
+               title="{{ t('gen.share_whatsapp') }}" aria-label="{{ t('gen.share_whatsapp') }} {{ t('footer.new_tab') }}">{{ footer_icon("whatsapp", size=16) }}</a>
+          </div>
+        </div>
+
+        <div id="result-error" class="alert alert-danger d-none" role="alert"></div>
+
+        <div id="result-empty" class="result-placeholder text-body-secondary">
+          {{ t("gen.empty_before") }} <strong>{{ t("js.gen.submit") }}</strong>{{ t("gen.empty_after") }}
+        </div>
+
+        <div id="result-loading" class="result-placeholder d-none">
+          <div class="spinner-border text-primary mb-3" role="status" aria-hidden="true"></div>
+          <p class="mb-0">{{ t("gen.loading") }}</p>
+        </div>
+
+        <div id="result" class="d-none flex-grow-1 d-flex flex-column">
+          <div id="result-meta" class="d-flex flex-wrap gap-2 mb-2 small"></div>
+          <div id="result-commercial-missing" class="alert alert-danger py-2 small d-none" role="alert"></div>
+          <div id="result-placeholders" class="alert alert-warning py-2 small d-none" role="status"></div>
+          <div id="result-content" class="generated-content flex-grow-1"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-12" aria-labelledby="history-title">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+          <h2 id="history-title" class="h5 mb-0">{{ t("gen.history") }} <span id="history-total" class="badge text-bg-secondary align-middle"></span></h2>
+          <div class="d-flex gap-2">
+            <select id="history-filter" class="form-select form-select-sm" aria-label="{{ t('gen.history_filter') }}">
+              <option value="">{{ t("gen.history_all") }}</option>
+              {% for value, text in content_types.items() %}
+                <option value="{{ value }}">{{ text }}</option>
+              {% endfor %}
+            </select>
+            <button id="history-refresh" type="button" class="btn btn-sm btn-outline-secondary">{{ t("gen.history_refresh") }}</button>
+          </div>
+        </div>
+
+        <div id="history-error" class="alert alert-warning d-none" role="alert"></div>
+        <p id="history-empty" class="text-body-secondary mb-0 d-none">{{ t("gen.history_empty") }}</p>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0 d-none" id="history-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ t("js.gen.date") }}</th>
+                <th scope="col">{{ t("gen.col_type") }}</th>
+                <th scope="col">{{ t("js.gen.customer") }}</th>
+                <th scope="col" class="d-none d-md-table-cell">{{ t("gen.col_company") }}</th>
+                <th scope="col" class="d-none d-lg-table-cell">{{ t("gen.col_provider") }}</th>
+                <th scope="col" class="text-end"><span class="visually-hidden">{{ t("gen.col_actions") }}</span></th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+
+        <div class="text-center mt-3">
+          <button id="history-more" type="button" class="btn btn-sm btn-outline-primary d-none">{{ t("gen.history_more") }}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title h5" id="delete-title">{{ t("js.gen.delete_label") }}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ t('gen.close') }}"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-2">{{ t("gen.delete_confirm") }}</p>
+        <p id="delete-summary" class="small text-body-secondary mb-0"></p>
+        <div id="delete-error" class="alert alert-danger small mt-3 mb-0 d-none" role="alert"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ t("gen.cancel") }}</button>
+        <button id="delete-confirm" type="button" class="btn btn-danger">
+          <span class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
+          <span class="button-label">{{ t("js.gen.delete") }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detail-modal" tabindex="-1" aria-labelledby="detail-title" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-fullscreen-sm-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title h5" id="detail-title">{{ t("gen.detail_title") }}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ t('gen.close') }}"></button>
+      </div>
+      <div class="modal-body">
+        <dl id="detail-meta" class="row small mb-3"></dl>
+        <div id="detail-commercial-missing" class="alert alert-danger py-2 small d-none" role="alert"></div>
+        <div id="detail-placeholders" class="alert alert-warning py-2 small d-none" role="status"></div>
+        <div id="detail-content" class="generated-content"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-copy-target="detail-content">{{ t("gen.copy") }}</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ t("gen.close") }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script id="ui-labels" type="application/json">
+  {{ {"content_types": content_types, "languages": languages, "tones": tones} | tojson }}
+</script>
+<script type="module" src="/static/js/app.js"></script>
+{% endblock %}

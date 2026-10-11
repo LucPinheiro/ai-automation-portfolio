@@ -1,0 +1,133 @@
+{% extends "public_base.html" %}
+{% block title %}{{ t("contact.title") }} · {{ app_name }}{% endblock %}
+{% block main_class %}public-main public-main--wide{% endblock %}
+{% block page_title %}{{ t("contact.title") }}{% endblock %}
+
+{% macro field(name, label_key, type="text", textarea=False) %}
+  {% set limits = contact_limits[name] %}
+  {% set error = contact_errors.get(name) %}
+  <div class="contact-field">
+    <label for="contact-{{ name }}" class="form-label">{{ t(label_key) }} <span aria-hidden="true">*</span></label>
+    {% if textarea %}
+      <textarea id="contact-{{ name }}" name="{{ name }}" class="form-control {% if error %}is-invalid{% endif %}" rows="7"
+                maxlength="{{ limits[1] }}" required aria-required="true"
+                {% if error %}aria-invalid="true" aria-describedby="contact-{{ name }}-error"{% endif %}>{{ contact_values.get(name, "") }}</textarea>
+    {% else %}
+      <input id="contact-{{ name }}" name="{{ name }}" type="{{ type }}" class="form-control {% if error %}is-invalid{% endif %}"
+             value="{{ contact_values.get(name, '') }}" maxlength="{{ limits[1] }}" required aria-required="true"
+             autocomplete="{{ 'email' if type == 'email' else ('name' if name == 'name' else 'off') }}"
+             {% if error %}aria-invalid="true" aria-describedby="contact-{{ name }}-error"{% endif %}>
+    {% endif %}
+    {% if error %}<div class="invalid-feedback" id="contact-{{ name }}-error">{{ error }}</div>{% endif %}
+  </div>
+{% endmacro %}
+
+{% block page_content %}
+<p class="public-lead">{{ t("contact.intro") }}</p>
+
+<div class="contact-grid">
+  {# Support details and API incidents (first on mobile). #}
+  <aside class="contact-info" aria-labelledby="support-title">
+    <div class="contact-info-header">
+      <h2 id="support-title">{{ t("contact.support") }}</h2>
+      {% if support.is_demo %}<span class="demo-badge" id="demo-data-badge">{{ t("contact.demo_badge") }}</span>{% endif %}
+    </div>
+
+    <dl class="contact-details">
+      <dt>{{ t("contact.email") }}</dt>
+      <dd id="support-email">
+        {% if support.email %}<a href="mailto:{{ support.email }}">{{ support.email }}</a>
+        {% else %}<span class="public-pending">{{ t("contact.email_pending") }}</span>{% endif %}
+      </dd>
+      <dt>{{ t("contact.phone") }}</dt>
+      <dd id="support-phone">
+        {% if support.phone %}<a href="tel:{{ support.phone_href }}">{{ support.phone }}</a>
+        {% else %}<span class="public-pending">{{ t("contact.phone_pending") }}</span>{% endif %}
+      </dd>
+      <dt>{{ t("contact.hours") }}</dt>
+      <dd id="support-hours">{{ t("contact.hours_value", open=support.hours_open, close=support.hours_close) }}</dd>
+    </dl>
+
+    <section class="contact-incidents" id="incidents" aria-labelledby="incidents-title">
+      <h3 id="incidents-title">{{ t("contact.incidents") }}</h3>
+      <p>{{ t("contact.incidents_intro") }}</p>
+      <ul>
+        <li>{{ t("contact.incidents_when") }}</li>
+        <li>{{ t("contact.incidents_operation") }}</li>
+        <li>{{ t("contact.incidents_error") }}</li>
+      </ul>
+      <p class="contact-warning">{{ t("contact.incidents_never") }}</p>
+      <p class="mb-0"><a href="/docs" target="_blank" rel="noopener">{{ t("contact.api_docs") }}</a></p>
+    </section>
+  </aside>
+
+  {# Contact form: a real POST (works without JavaScript); demo mode sends nothing. #}
+  <section class="contact-form-panel" aria-labelledby="contact-form-title">
+    <h2 id="contact-form-title">{{ t("contact.form.title") }}</h2>
+    <p class="contact-demo-note">{{ t("contact.form.demo_note") }}</p>
+
+    {% if contact_result %}
+      <div class="alert alert-info" role="status" id="contact-demo-result">{{ t("contact.form.demo_result") }}</div>
+    {% endif %}
+    {% if contact_errors %}
+      <div class="alert alert-danger" role="alert" id="contact-errors">{{ t("contact.form.errors") }}</div>
+    {% endif %}
+
+    <form id="contact-form" class="contact-form" method="post" action="/contacto" novalidate>
+      <p class="contact-required-note">{{ t("contact.form.required_note") }}</p>
+      {{ field("name", "contact.form.name") }}
+      {{ field("email", "contact.form.email", "email") }}
+
+      {% set category_error = contact_errors.get("category") %}
+      <div class="contact-field">
+        <label for="contact-category" class="form-label">{{ t("contact.form.category") }} <span aria-hidden="true">*</span></label>
+        <select id="contact-category" name="category" class="form-select {% if category_error %}is-invalid{% endif %}"
+                required aria-required="true"
+                {% if category_error %}aria-invalid="true" aria-describedby="contact-category-error"{% endif %}>
+          <option value="" {% if not contact_values.get("category") %}selected{% endif %}>{{ t("contact.form.category_placeholder") }}</option>
+          {% for category in contact_categories %}
+            <option value="{{ category }}" {% if contact_values.get("category") == category %}selected{% endif %}>{{ t("contact.category." ~ category) }}</option>
+          {% endfor %}
+        </select>
+        {% if category_error %}<div class="invalid-feedback" id="contact-category-error">{{ category_error }}</div>{% endif %}
+      </div>
+
+      {{ field("subject", "contact.form.subject") }}
+      {{ field("message", "contact.form.message", textarea=True) }}
+
+      {# GDPR consent: never ticked by default. It is only kept ticked after a validation error,
+         because then it was the user who ticked it. Checked again on the server. #}
+      {% set privacy_error = contact_errors.get("privacy_accepted") %}
+      <div class="contact-field form-check contact-consent">
+        <input id="contact-privacy" name="privacy_accepted" type="checkbox" value="yes"
+               class="form-check-input {% if privacy_error %}is-invalid{% endif %}" required aria-required="true"
+               {% if contact_values.get("privacy_accepted") == "yes" %}checked{% endif %}
+               {% if privacy_error %}aria-invalid="true" aria-describedby="contact-privacy_accepted-error"{% endif %}>
+        <label for="contact-privacy" class="form-check-label">
+          {{ t("contact.form.privacy_accept") }}
+          <a href="/privacidad" target="_blank" rel="noopener">{{ t("contact.form.privacy_policy") }}</a>
+          <span aria-hidden="true">*</span>
+        </label>
+        {% if privacy_error %}<div class="invalid-feedback" id="contact-privacy_accepted-error">{{ privacy_error }}</div>{% endif %}
+      </div>
+
+      <button type="submit" id="contact-submit" class="btn-access-primary">{{ t("contact.form.submit") }}</button>
+    </form>
+
+    {# First-layer data protection information (art. 13 RGPD), right below the form. #}
+    <section class="contact-gdpr" id="contact-gdpr" aria-labelledby="contact-gdpr-title">
+      <h3 id="contact-gdpr-title">{{ t("contact.gdpr.title") }}</h3>
+      <dl>
+        <dt>{{ t("contact.gdpr.controller") }}</dt><dd>{{ t("contact.gdpr.controller_value") }}</dd>
+        <dt>{{ t("contact.gdpr.purpose") }}</dt><dd>{{ t("contact.gdpr.purpose_value") }}</dd>
+        <dt>{{ t("contact.gdpr.legal_basis") }}</dt><dd>{{ t("contact.gdpr.legal_basis_value") }}</dd>
+        <dt>{{ t("contact.gdpr.recipients") }}</dt><dd>{{ t("contact.gdpr.recipients_value") }}</dd>
+        <dt>{{ t("contact.gdpr.rights") }}</dt><dd>{{ t("contact.gdpr.rights_value") }}</dd>
+        <dt>{{ t("contact.gdpr.more") }}</dt>
+        <dd><a href="/privacidad" target="_blank" rel="noopener">{{ t("contact.gdpr.more_link") }}</a></dd>
+      </dl>
+      <p class="mb-0">{{ t("contact.gdpr.demo") }}</p>
+    </section>
+  </section>
+</div>
+{% endblock %}

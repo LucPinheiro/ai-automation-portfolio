@@ -1,0 +1,29 @@
+{% extends "auth_base.html" %}
+{% from "_form_macros.html" import input_field, password_field, submit_button, form_alerts with context %}
+{% block title %}{{ t("auth.register.title") }} · {{ app_name }}{% endblock %}
+{% block heading %}{{ t("auth.register.title") }}{% endblock %}
+{% block intro %}{{ t("auth.register.intro") }}{% endblock %}
+
+{% block form %}
+  {% if current_user and current_user.is_guest %}
+    <div class="alert alert-light border small py-2" role="status">
+      {{ t("auth.register.guest_notice") }}
+    </div>
+  {% endif %}
+  <form id="register-form" novalidate>
+    {{ form_alerts() }}
+    {{ input_field("name", t("auth.register.name"), "text", "name", maxlength=auth_limits.name, autofocus=True) }}
+    {{ input_field("email", t("auth.register.email"), "email", "email", maxlength=auth_limits.email) }}
+    {{ input_field("username", t("auth.register.username"), "text", "username", maxlength=auth_limits.username_max,
+                   help=t("auth.register.username_help", min=auth_limits.username_min, max=auth_limits.username_max),
+                   required=False) }}
+    {{ password_field("password", t("auth.register.password"), "new-password", auth_limits, new=True) }}
+    {{ password_field("password_confirm", t("auth.register.password_confirm"), "new-password", auth_limits) }}
+    {{ submit_button(t("auth.register.submit"), "register-button") }}
+  </form>
+{% endblock %}
+
+{% block links %}{{ t("auth.register.have_account") }} <a href="/login">{{ t("auth.register.login_link") }}</a>{% endblock %}
+
+{# On the register page the presentation offers the way back to the login. #}
+{% block aside_cta %}<a href="/login" class="btn-access-outline" id="aside-login">{{ t("presentation.login") }}</a>{% endblock %}
