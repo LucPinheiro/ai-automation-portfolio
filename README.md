@@ -1,7 +1,5 @@
 # 🤖 AI Sales Assistant - Intelligent Commercial Assistant
 
----
-
 ## 📝 Description
 
 
