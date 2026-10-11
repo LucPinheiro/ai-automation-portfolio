@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "functions": {
-    "vercel_app.py": {
-      "runtime": "@vercel/python"
+  "builds": [
+    {
+      "src": "vercel_app.py",
+      "use": "@vercel/python"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(.*)",
