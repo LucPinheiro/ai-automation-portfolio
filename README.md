@@ -1,26 +1,4 @@
-# 🤖 AI Sales Assistant - Intelligent Commercial Assistant
-
-<p align="center">
-  <a href="./README.md"><img src="https://shields.io" alt="English"></a>
-  <a href="./README.es.md"><img src="https://shields.io" alt="Español"></a>
-  <a href="./README.pt.md"><img src="https://shields.io" alt="Português"></a>
-  <a href="./README.fr.md"><img src="https://shields.io" alt="Francais"></a>
-</p>
-
-<p align="center">
-  <img src="https://shields.io" alt="Python">
-  <img src="https://shields.io" alt="FastAPI">
-  <img src="https://shields.io" alt="SQLAlchemy">
-  <img src="https://shields.io" alt="Pydantic">
-  <img src="https://shields.io" alt="PostgreSQL">
-  <img src="https://shields.io" alt="Docker">
-  <img src="https://shields.io" alt="OpenAI">
-  <img src="https://shields.io🧠-orange?style=flat" alt="RAG">
-  <img src="https://shields.io" alt="MCP">
-  <img src="https://shields.io" alt="SDD">
-</p>
-
----
+<img width="1010" height="395" alt="image" src="https://github.com/user-attachments/assets/9b1f642b-1776-4069-aae3-a08abc2bb93c" />
 
 ## 📝 Description
 
