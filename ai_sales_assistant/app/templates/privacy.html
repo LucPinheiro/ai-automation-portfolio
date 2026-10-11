@@ -1,0 +1,16 @@
+{% extends "public_base.html" %}
+{% block title %}{{ t("privacy.title") }} · {{ app_name }}{% endblock %}
+{% block page_title %}{{ t("privacy.title") }}{% endblock %}
+
+{# Structure only. The data controller and the other legal details are not defined yet and
+   must not be invented: each section shows "Pendiente de completar" until they are. #}
+{% block page_content %}
+<p class="public-lead">{{ t("public.updated") }}</p>
+{% for key in ["privacy.controller", "privacy.data", "privacy.purpose", "privacy.legal_basis",
+               "privacy.retention", "privacy.recipients", "privacy.rights", "privacy.contact"] %}
+  <section class="public-section" data-section="{{ key }}">
+    <h2>{{ t(key) }}</h2>
+    <p class="public-pending">{{ t("public.pending") }}</p>
+  </section>
+{% endfor %}
+{% endblock %}

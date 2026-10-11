@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_brand.html" import logo %}
+
+{% block body_class %}public-page{% endblock %}
+
+{# Public information pages (contact, legal notice, privacy): no session needed. #}
+{% block body %}
+<header class="public-topbar">
+  <div class="public-topbar-inner">
+    <a href="{{ '/app' if current_user else '/login' }}" class="public-brand" aria-label="{{ t('brand.home') }}">{{ logo(28) }}</a>
+    <div class="d-flex align-items-center gap-3">
+      <a href="{{ '/app' if current_user else '/login' }}" class="public-back">
+        {{ t("public.back_app") if current_user else t("public.back_login") }}
+      </a>
+      {% include "_language_selector.html" %}
+    </div>
+  </div>
+</header>
+
+<main class="{% block main_class %}public-main{% endblock %}">
+  <article class="public-article">
+    <h1 class="public-title">{% block page_title %}{% endblock %}</h1>
+    {% block page_content %}{% endblock %}
+  </article>
+</main>
+
+{% include "_footer.html" %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{# Form fields shared by the authentication pages. Errors are filled in by static/js/forms.js.
+   Import them `with context`: password_field uses the `t()` translator. #}
+{% macro input_field(name, label, type="text", autocomplete="off", maxlength=None, minlength=None, help=None, autofocus=False, required=True) %}
+  <div class="mb-3">
+    <label for="{{ name }}" class="form-label">{{ label }}</label>
+    <input id="{{ name }}" name="{{ name }}" type="{{ type }}" class="form-control" autocomplete="{{ autocomplete }}"
+           {% if maxlength %}maxlength="{{ maxlength }}"{% endif %} {% if minlength %}minlength="{{ minlength }}"{% endif %}
+           {% if autofocus %}autofocus{% endif %} {% if required %}required{% endif %}>
+    {% if help %}<div class="form-text">{{ help }}</div>{% endif %}
+    <div class="invalid-feedback" data-error-for="{{ name }}"></div>
+  </div>
+{% endmacro %}
+
+{% macro password_field(name, label, autocomplete, limits, new=False, autofocus=False) %}
+  {{ input_field(name, label, "password", autocomplete, maxlength=limits.password_max,
+                 minlength=limits.password_min if new else None,
+                 help=t("auth.password_help", min=limits.password_min, max=limits.password_max) if new else None,
+                 autofocus=autofocus) }}
+{% endmacro %}
+
+{% macro submit_button(label, id) %}
+  <div class="d-grid">
+    <button id="{{ id }}" type="submit" class="btn-access-primary">
+      <span class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
+      <span class="button-label">{{ label }}</span>
+    </button>
+  </div>
+{% endmacro %}
+
+{% macro form_alerts() %}
+  <div class="alert alert-danger d-none" role="alert" data-form-error></div>
+  <div class="alert alert-success d-none" role="status" data-form-success></div>
+{% endmacro %}

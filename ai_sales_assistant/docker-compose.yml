@@ -1,0 +1,23 @@
+# Development: the app in a container, Ollama running on the host machine.
+#   docker compose up        -> http://localhost:8000/app
+# The project folder is mounted at /app, so the app reads your .env and the SQLite database there,
+# and --reload picks up code changes.
+services:
+  app:
+    image: python:3.12-slim
+    container_name: mi-api-assistant
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: sh -c "pip install -r requirements.txt && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    environment:
+      # Inside the container "localhost" is the container itself. host.docker.internal is the
+      # host machine, where Ollama listens on port 11434. Environment variables take precedence
+      # over .env, so the .env value (localhost, valid outside Docker) does not need to change.
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+    extra_hosts:
+      # Docker Desktop (Windows/macOS) defines host.docker.internal already; this also makes it
+      # work on Linux.
+      - "host.docker.internal:host-gateway"

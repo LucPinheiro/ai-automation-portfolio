@@ -1,0 +1,26 @@
+🤖 AI Sales Assistant – Intelligent Commercial Assistant
+
+AI Sales Assistant is an AI-powered web application designed to help sales teams create professional, consistent, and personalized commercial communications.
+
+Built with Python and FastAPI, the application follows modern software engineering principles such as Spec-Driven Development (SDD), Clean Architecture, Repository Pattern, Service Layer, REST APIs, and AI-first development.
+
+The assistant can generate commercial emails, sales proposals, follow-up messages, WhatsApp communications, and customer summaries based on information such as the customer, company, industry, products or services, customer needs, preferred language, and tone of voice.
+
+The backend is built with Python 3.12+, FastAPI, SQLAlchemy, Pydantic, and Alembic. The frontend uses HTML5, Bootstrap 5, JavaScript, and Jinja2, while the database architecture supports SQLite and PostgreSQL.
+
+Artificial intelligence capabilities are powered by the OpenAI API and Prompt Engineering, with the architecture prepared for future integration of RAG, embeddings, MCP, local AI models, and AI Agents.
+
+The project is designed to evolve progressively from an AI content-generation application into a complete enterprise commercial assistant. Future versions include authentication, user and customer management, PDF and Word export, dashboards, PostgreSQL, Docker, RAG, Ollama, Hugging Face, Odoo CRM integration, MCP, and autonomous AI agents.
+
+The project also serves as a practical demonstration of skills in AI Software Engineering, Full Stack Development, FastAPI, SQLAlchemy, REST APIs, Clean Architecture, Docker, PostgreSQL, Prompt Engineering, RAG, MCP, AI Agents, and DevOps.
+
+Author: Luciana Pinheiro  
+AI Software Engineer • Full Stack Developer • Odoo Consultant
+
+GitHub: github.com/LucPinheiro  
+Portfolio: lucpinheiro.github.io  
+LinkedIn: linkedin.com/in/lucianapinheiro
+
+License: MIT License
+
+Part of the AI Automation Portfolio.

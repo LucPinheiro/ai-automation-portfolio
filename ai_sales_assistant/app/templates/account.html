@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% from "_form_macros.html" import password_field, submit_button, form_alerts with context %}
+{% block title %}{{ t("account.title") }} · {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="row g-4 justify-content-center">
+  <section class="col-lg-5" aria-labelledby="account-title">
+    <div class="card shadow-sm h-100">
+      <div class="card-body p-4">
+        <h2 id="account-title" class="h5 mb-3">{{ t("account.title") }}</h2>
+        <dl class="row mb-0">
+          <dt class="col-sm-4 text-body-secondary fw-normal">{{ t("account.name") }}</dt>
+          <dd class="col-sm-8">{{ current_user.name }}</dd>
+          {% if current_user.username %}
+            <dt class="col-sm-4 text-body-secondary fw-normal">{{ t("account.username") }}</dt>
+            <dd class="col-sm-8 text-break">{{ current_user.username }}</dd>
+          {% endif %}
+          <dt class="col-sm-4 text-body-secondary fw-normal">{{ t("account.email") }}</dt>
+          <dd class="col-sm-8 text-break">{{ current_user.email }}</dd>
+          <dt class="col-sm-4 text-body-secondary fw-normal">{{ t("account.member_since") }}</dt>
+          <dd class="col-sm-8">{{ current_user.created_at.strftime("%d/%m/%Y") }}</dd>
+        </dl>
+        <hr>
+        <a href="/app" class="btn btn-outline-primary btn-sm">{{ t("account.go_generator") }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-lg-5" aria-labelledby="password-title">
+    <div class="card shadow-sm h-100">
+      <div class="card-body p-4">
+        <h2 id="password-title" class="h5 mb-1">{{ t("account.password_title") }}</h2>
+        <p class="text-body-secondary small mb-3">{{ t("account.password_intro") }}</p>
+        <form id="change-password-form" novalidate>
+          {{ form_alerts() }}
+          {{ password_field("current_password", t("account.current_password"), "current-password", auth_limits) }}
+          {{ password_field("new_password", t("account.new_password"), "new-password", auth_limits, new=True) }}
+          {{ password_field("new_password_confirm", t("account.new_password_confirm"), "new-password", auth_limits) }}
+          {{ submit_button(t("account.submit"), "change-password-button") }}
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="/static/js/auth.js"></script>
+{% endblock %}

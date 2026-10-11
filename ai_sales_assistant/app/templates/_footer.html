@@ -1,0 +1,30 @@
+{# Shared footer: every screen (access, app and public pages). One row: copyright | legal | contact. #}
+{% from "_icons.html" import footer_icon %}
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p class="site-footer-copy mb-0">{{ t("footer.copyright", year=current_year) }}</p>
+    <nav class="site-footer-legal" aria-label="{{ t('footer.nav') }}">
+      <ul class="site-footer-links">
+        <li><a href="/contacto">{{ t("footer.contact") }}</a></li>
+        <li><a href="/legal">{{ t("footer.legal") }}</a></li>
+        <li><a href="/privacidad">{{ t("footer.privacy") }}</a></li>
+      </ul>
+    </nav>
+    {% if footer_contacts %}
+    <nav class="site-footer-social" aria-label="{{ t('footer.social') }}">
+      <ul class="site-footer-links">
+        {% for contact in footer_contacts %}
+        <li>
+          <a class="footer-social-link" data-footer-contact="{{ contact.name }}" href="{{ contact.href }}"
+             {%- if contact.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+            {{ footer_icon(contact.name, size=16) }}
+            <span>{{ t("footer.social." ~ contact.name) }}</span>
+            {%- if contact.external %}<span class="visually-hidden"> {{ t("footer.new_tab") }}</span>{% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+</footer>

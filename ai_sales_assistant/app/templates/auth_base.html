@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "_brand.html" import logo %}
+
+{% block body_class %}access-page{% endblock %}
+
+{#
+  Access layout (login, register, password recovery):
+  turquoise background, white access card on the left, product presentation on the right.
+  On narrow screens the card comes first and the presentation follows it.
+#}
+{% block body %}
+<div class="access-shell">
+  <header class="access-topbar">
+    <a href="/login" class="access-brand" aria-label="{{ t('brand.home') }}">{{ logo(30) }}</a>
+    {% include "_language_selector.html" %}
+  </header>
+
+  <main class="access-main">
+    <section class="access-card" aria-labelledby="access-title">
+      {% if self.intro() | trim %}
+        <h1 id="access-title" class="access-title">{% block heading %}{% endblock %}</h1>
+        <p class="access-intro">{% block intro %}{% endblock %}</p>
+      {% else %}
+        <h1 id="access-title" class="access-title">{{ self.heading() }}</h1>
+      {% endif %}
+      {% block form %}{% endblock %}
+      {% if self.links() | trim %}<p class="access-links">{% block links %}{% endblock %}</p>{% endif %}
+    </section>
+
+    <section class="access-aside" aria-label="{{ t('brand.name') }}">
+      <p class="access-aside-brand">{{ t("brand.name") }}</p>
+      <h2 class="access-aside-slogan">{{ t("brand.slogan") }}</h2>
+      <p class="access-aside-text">{{ t("presentation.text") }}</p>
+      {% block aside_cta %}
+        <a href="/register" class="btn-access-outline" id="aside-register">{{ t("presentation.register") }}</a>
+      {% endblock %}
+      <p class="access-aside-tagline">{{ t("presentation.tagline") }}</p>
+    </section>
+  </main>
+</div>
+
+{% include "_footer.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="/static/js/auth.js"></script>
+{% endblock %}

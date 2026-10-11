@@ -1,0 +1,88 @@
+{% from "_icons.html" import person_icon -%}
+{% from "_brand.html" import mark -%}
+<!doctype html>
+<html lang="{{ ui_language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ app_name }}{% endblock %}</title>
+  <link rel="icon" href="/static/img/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="stylesheet" href="/static/css/brand.css">
+</head>
+<body class="{% block body_class %}app-page{% endblock %}">
+  {% block body %}
+  <header class="app-header border-bottom bg-white">
+    <div class="container py-3 d-flex align-items-center gap-3">
+      <a href="{{ '/app' if current_user else '/login' }}" class="app-logo flex-shrink-0" aria-label="{{ t('brand.home') }}">
+        {{ mark(30) }}
+      </a>
+      <div class="flex-grow-1">
+        <h1 class="h4 mb-0 fw-semibold app-title"><strong>AI</strong> Sales Assistant</h1>
+        <p class="mb-0 text-body-secondary small">{{ t("brand.slogan") }}</p>
+      </div>
+      <a href="/docs" class="btn btn-sm btn-outline-secondary d-none d-md-inline-block" target="_blank" rel="noopener">{{ t("app.api_docs") }}</a>
+      {% if current_user and current_user.is_guest %}
+        {# Guest mode: no account features (no email, no password); offer to log in or sign up. #}
+        <a href="/login" class="btn btn-sm btn-outline-secondary d-none d-sm-inline-block">{{ t("app.login") }}</a>
+        <a href="/register" class="btn btn-sm btn-primary d-none d-sm-inline-block">{{ t("app.register") }}</a>
+        <div class="dropdown" id="guest-menu">
+          <button class="btn btn-sm btn-light border rounded-pill dropdown-toggle d-flex align-items-center gap-1 guest-badge"
+                  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ person_icon(14) }}<span>{{ t("app.guest_badge") }}</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+            <li class="px-3 py-2 small text-body-secondary guest-note">
+              {{ t("app.guest_note") }}
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/login">{{ t("app.login") }}</a></li>
+            <li><a class="dropdown-item" href="/register">{{ t("app.register") }}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <button class="dropdown-item text-danger" type="button" id="logout-button"
+                      data-confirm="{{ t('app.guest_logout_confirm') }}">
+                {{ t("app.guest_logout") }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      {% elif current_user %}
+        <div class="dropdown" id="user-menu">
+          <button class="btn btn-sm btn-light border dropdown-toggle d-flex align-items-center gap-2" type="button"
+                  data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{ t('app.user_menu') }}">
+            <span class="user-avatar" aria-hidden="true">{{ current_user.name[:1] | upper }}</span>
+            <span class="d-none d-sm-inline text-truncate user-name">{{ current_user.name }}</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+            <li class="px-3 py-2 small">
+              <div class="fw-semibold text-truncate">{{ current_user.name }}</div>
+              <div class="text-body-secondary text-truncate">{{ current_user.email }}</div>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/app">{{ t("app.menu_generator") }}</a></li>
+            <li><a class="dropdown-item" href="/account">{{ t("app.menu_account") }}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button class="dropdown-item text-danger" type="button" id="logout-button">{{ t("app.logout") }}</button></li>
+          </ul>
+        </div>
+      {% endif %}
+      {% include "_language_selector.html" %}
+    </div>
+  </header>
+
+  <main class="container py-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "_footer.html" %}
+  {% endblock %}
+
+  {# Texts for static/js/i18n.js, in the interface language. #}
+  <script id="i18n-messages" type="application/json">{{ js_messages | tojson }}</script>
+  <script src="/static/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  {% if current_user %}<script type="module" src="/static/js/session.js"></script>{% endif %}
+  {% block scripts %}{% endblock %}
+</body>
+</html>

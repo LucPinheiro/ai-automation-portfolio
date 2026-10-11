@@ -1,0 +1,17 @@
+{# Interface language selector, built from app.i18n.SUPPORTED_LANGUAGES. Each item links to
+   GET /language/<code>, which stores the choice in a cookie and reloads the same page. #}
+<div class="dropdown lang-switch" id="language-selector">
+  <button class="lang-switch-toggle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+          aria-label="{{ t('language.current', name=ui_languages[ui_language]) }}">
+    {{ ui_language | upper }}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-label="{{ t('language.label') }}">
+    {% for code, name in ui_languages.items() %}
+      <li>
+        <a class="dropdown-item {% if code == ui_language %}active{% endif %}" lang="{{ code }}" hreflang="{{ code }}"
+           href="/language/{{ code }}?{{ {'next': current_path} | urlencode }}"
+           {% if code == ui_language %}aria-current="true"{% endif %} data-language="{{ code }}">{{ name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

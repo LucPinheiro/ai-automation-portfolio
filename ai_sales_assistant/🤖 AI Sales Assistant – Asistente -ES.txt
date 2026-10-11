@@ -1,0 +1,26 @@
+🤖 AI Sales Assistant – Asistente Comercial Inteligente
+
+AI Sales Assistant es una aplicación web impulsada por Inteligencia Artificial diseñada para ayudar a equipos comerciales a crear comunicaciones profesionales, coherentes y personalizadas de forma rápida y eficiente.
+
+Desarrollada con Python y FastAPI, la aplicación sigue principios modernos de ingeniería de software como Spec-Driven Development (SDD), Clean Architecture, Repository Pattern, Service Layer, APIs REST y desarrollo AI-first.
+
+El asistente permite generar automáticamente correos comerciales, propuestas de venta, mensajes de seguimiento, comunicaciones para WhatsApp y resúmenes de clientes a partir de información como el cliente, la empresa, el sector, los productos o servicios, las necesidades del cliente, el idioma y el tono de comunicación.
+
+El backend está desarrollado con Python 3.12+, FastAPI, SQLAlchemy, Pydantic y Alembic. El frontend utiliza HTML5, Bootstrap 5, JavaScript y Jinja2, mientras que la arquitectura de datos está preparada para trabajar con SQLite y PostgreSQL.
+
+Las funcionalidades de Inteligencia Artificial están integradas mediante la API de OpenAI y técnicas de Prompt Engineering. La arquitectura también está preparada para futuras integraciones con RAG, embeddings, MCP, modelos de IA locales y agentes de Inteligencia Artificial.
+
+El proyecto está diseñado para evolucionar progresivamente desde una aplicación de generación de contenido mediante IA hasta convertirse en un asistente comercial empresarial completo. Las futuras versiones contemplan autenticación, gestión de usuarios y clientes, exportación a PDF y Word, dashboards, PostgreSQL, Docker, RAG, Ollama, Hugging Face, integración con Odoo CRM, MCP y agentes de IA autónomos.
+
+Este proyecto también tiene como objetivo demostrar experiencia práctica en AI Software Engineering, desarrollo Full Stack, FastAPI, SQLAlchemy, APIs REST, Clean Architecture, Docker, PostgreSQL, Prompt Engineering, RAG, MCP, agentes de IA y DevOps.
+
+Autora: Luciana Pinheiro  
+AI Software Engineer • Full Stack Developer • Consultora Odoo
+
+GitHub: github.com/LucPinheiro  
+Portfolio: lucpinheiro.github.io  
+LinkedIn: linkedin.com/in/lucianapinheiro
+
+Licencia: MIT License
+
+Parte del AI Automation Portfolio.

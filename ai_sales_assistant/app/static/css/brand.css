@@ -1,0 +1,971 @@
+/* AI Sales Assistant identity: ONE palette for access screens, the app, the footer and public pages.
+   Every colour lives in the --brand-* variables below; Bootstrap is mapped onto them, so the whole
+   identity can be changed from this block.
+   Own turquoise palette. Contrast (WCAG 2.1) is checked by tests/test_branding.py:
+   white on --brand-teal 4.67:1, white on --brand-teal-strong 6.0:1, ink on white 13.9:1. */
+
+:root {
+  --brand-teal: #00827f;          /* access background (white text passes AA) */
+  --brand-teal-bright: #19b3ac;   /* decorative accents only, never behind text */
+  --brand-teal-strong: #0b6f6b;   /* buttons and links on white */
+  --brand-teal-stronger: #095a57; /* hover / active */
+  --brand-ink: #12303a;           /* main text */
+  --brand-muted: #4e6670;         /* secondary text on white */
+  --brand-soft: #e7f5f4;          /* subtle tinted surfaces */
+  --brand-line: #d6e6e5;          /* discreet borders */
+  --brand-line-soft: #e6eeee;     /* card borders in the app */
+  --brand-page: #f4f7f7;          /* app background: very light, almost white */
+  --brand-surface: #ffffff;       /* cards, header, footer */
+  --brand-on-teal: #ffffff;       /* text and lines on the turquoise background */
+  --brand-on-teal-line: rgba(255, 255, 255, 0.7);
+  --brand-surface-muted: #f8fafa; /* generated-content area */
+  --brand-gray: #5f6b73;          /* footer text, links and icons at rest (5.4:1 on white) */
+  /* The same colours as RGB triplets, for Bootstrap's transparencies. */
+  --brand-teal-rgb: 0, 130, 127;
+  --brand-teal-strong-rgb: 11, 111, 107;
+  --brand-teal-stronger-rgb: 9, 90, 87;
+  --brand-shadow-rgb: 4, 45, 44;
+  --brand-focus-ring: rgba(var(--brand-teal-strong-rgb), 0.18);
+  --brand-radius: 16px;
+  --brand-shadow: 0 18px 50px rgba(var(--brand-shadow-rgb), 0.18);
+  --brand-shadow-soft: 0 6px 24px rgba(var(--brand-shadow-rgb), 0.08);
+  --brand-shadow-card: 0 1px 3px rgba(var(--brand-shadow-rgb), 0.06), 0 1px 2px rgba(var(--brand-shadow-rgb), 0.04);
+
+  /* Bootstrap mapped onto the brand (no Bootstrap blue anywhere). */
+  --bs-primary: var(--brand-teal-strong);
+  --bs-primary-rgb: var(--brand-teal-strong-rgb);
+  --bs-primary-text-emphasis: var(--brand-teal-stronger);
+  --bs-primary-bg-subtle: var(--brand-soft);
+  --bs-primary-border-subtle: var(--brand-line);
+  --bs-link-color: var(--brand-teal-strong);
+  --bs-link-color-rgb: var(--brand-teal-strong-rgb);
+  --bs-link-hover-color: var(--brand-teal-stronger);
+  --bs-link-hover-color-rgb: var(--brand-teal-stronger-rgb);
+  --bs-focus-ring-color: var(--brand-focus-ring);
+  --bs-body-color: var(--brand-ink);
+}
+
+body {
+  color: var(--brand-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand-teal-bright);
+  outline-offset: 2px;
+}
+
+/* --- Brand mark -------------------------------------------------------------------------- */
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+}
+
+.brand-mark {
+  flex-shrink: 0;
+}
+
+.brand-wordmark {
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.brand-wordmark strong {
+  font-weight: 800;
+}
+
+/* App header (white): turquoise mark. */
+.app-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  color: var(--brand-teal-strong);
+  background-color: var(--brand-soft);
+}
+
+.app-title strong {
+  font-weight: 800;
+}
+
+/* --- Access screens (login, register, password recovery) ----------------------------------- */
+
+.access-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--brand-teal);
+}
+
+.access-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+.access-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  color: var(--brand-on-teal);
+}
+
+.access-brand,
+.access-brand:hover {
+  color: var(--brand-on-teal);
+  text-decoration: none;
+}
+
+.access-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 7vw, 6.5rem);
+}
+
+.access-card {
+  padding: 2.5rem 2.25rem 2rem;
+  background-color: var(--brand-surface);
+  border-radius: var(--brand-radius);
+  box-shadow: var(--brand-shadow);
+}
+
+.access-title {
+  margin-bottom: 1.75rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--brand-ink);
+}
+
+.access-intro {
+  margin: -1.1rem 0 1.5rem;
+  color: var(--brand-muted);
+}
+
+.access-card .form-label {
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+}
+
+.access-field {
+  margin-bottom: 1.1rem;
+}
+
+.access-card .form-control {
+  min-height: 50px;
+  padding: 0.7rem 0.9rem;
+  border-color: var(--brand-line);
+  border-radius: 10px;
+}
+
+.access-card .form-control:focus {
+  border-color: var(--brand-teal-strong);
+  box-shadow: 0 0 0 0.2rem var(--brand-focus-ring);
+}
+
+.demo-hint {
+  margin: -0.35rem 0 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--brand-muted);
+}
+
+/* Primary action: ENTRAR / CREAR CUENTA... (uppercase by CSS: screen readers read normal words). */
+.btn-access-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-on-teal);
+  background-color: var(--brand-teal-strong);
+  border: 0;
+  border-radius: 10px;
+  transition: background-color 0.15s ease;
+}
+
+.btn-access-primary:hover,
+.btn-access-primary:focus-visible {
+  background-color: var(--brand-teal-stronger);
+}
+
+.btn-access-primary:disabled {
+  opacity: 0.75;
+}
+
+.access-secondary-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+}
+
+.access-secondary-links a,
+.access-links a {
+  font-weight: 600;
+  color: var(--brand-teal-strong);
+  text-decoration: none;
+}
+
+.access-secondary-links a:hover,
+.access-links a:hover {
+  text-decoration: underline;
+}
+
+.access-links {
+  margin: 1.5rem 0 0;
+  font-size: 0.9rem;
+  color: var(--brand-muted);
+}
+
+/* "Probar sin registrarse": clearly secondary to ENTRAR. */
+.access-guest {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  text-align: center;
+  border-top: 1px solid var(--brand-line);
+}
+
+.access-guest .guest-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+}
+
+.access-guest .guest-link:hover {
+  color: var(--brand-teal-strong);
+  text-decoration: underline;
+}
+
+.guest-hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: var(--brand-muted);
+}
+
+/* Presentation (right side). */
+.access-aside {
+  max-width: 520px;
+  color: var(--brand-on-teal);
+}
+
+.access-aside-brand {
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.access-aside-slogan {
+  margin-bottom: 1.25rem;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.access-aside-text {
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.btn-access-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.7rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-on-teal);
+  text-decoration: none;
+  border: 2px solid var(--brand-on-teal);
+  border-radius: 10px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-access-outline:hover,
+.btn-access-outline:focus-visible {
+  color: var(--brand-teal-strong);
+  background-color: var(--brand-surface);
+}
+
+.access-aside-tagline {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+}
+
+/* --- Language selector ----------------------------------------------------------------------- */
+
+.lang-switch-toggle {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+
+.access-topbar .lang-switch-toggle {
+  color: var(--brand-on-teal);
+  border-color: var(--brand-on-teal-line);
+}
+
+/* The current language uses the shared dropdown highlight (see "Dropdown menus" below). */
+
+/* --- Footer (all screens) ------------------------------------------------------------------- */
+
+.site-footer {
+  background-color: var(--brand-surface);
+  border-top: 1px solid var(--brand-line-soft);
+}
+
+/* One quiet row: copyright left, legal links centred, contact links right. Everything rests in
+   soft grey; on hover or keyboard focus only the link's text and icon turn the brand dark cyan
+   (no boxes, no backgrounds). Grey on white 5.4:1, dark cyan on white 6.0:1 (WCAG AA). */
+.site-footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem 2rem;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.1rem 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--brand-gray);
+}
+
+.site-footer-copy {
+  justify-self: start;
+}
+
+.site-footer-legal {
+  justify-self: center;
+}
+
+.site-footer-social {
+  justify-self: end;
+}
+
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400;
+  color: var(--brand-gray);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.site-footer-links a:hover,
+.site-footer-links a:focus-visible {
+  color: var(--brand-teal-strong);
+}
+
+.footer-social-icon {
+  flex-shrink: 0;
+}
+
+.app-page .site-footer {
+  margin-top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer-links a {
+    transition: none;
+  }
+}
+
+/* --- Public pages (contact, legal, privacy) ----------------------------------------------- */
+
+.public-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--brand-soft);
+}
+
+.public-topbar {
+  color: var(--brand-on-teal);
+  background-color: var(--brand-teal);
+}
+
+.public-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.public-brand,
+.public-brand:hover,
+.public-back,
+.public-back:hover {
+  color: var(--brand-on-teal);
+}
+
+.public-back {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.public-topbar .lang-switch-toggle {
+  color: var(--brand-on-teal);
+}
+
+.public-main {
+  flex: 1;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.public-article {
+  padding: 2.5rem;
+  background-color: var(--brand-surface);
+  border-radius: var(--brand-radius);
+  box-shadow: var(--brand-shadow-soft);
+}
+
+.public-title {
+  margin-bottom: 1rem;
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.public-lead {
+  font-size: 1.05rem;
+  color: var(--brand-muted);
+}
+
+.public-section {
+  margin-top: 1.75rem;
+}
+
+.public-section h2 {
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.public-pending {
+  font-style: italic;
+  color: var(--brand-muted);
+}
+
+/* --- Login logo: about 17 % larger than the generic mark (30 px -> 35 px), same artwork. ------- */
+
+.access-brand .brand-mark {
+  width: 35px;
+  height: 35px;
+}
+
+.access-brand .brand-wordmark {
+  font-size: 1.35rem;
+}
+
+/* --- The application (/app, /account): brand colours on Bootstrap components ------------------ */
+
+.btn-primary {
+  --bs-btn-bg: var(--brand-teal-strong);
+  --bs-btn-border-color: var(--brand-teal-strong);
+  --bs-btn-hover-bg: var(--brand-teal-stronger);
+  --bs-btn-hover-border-color: var(--brand-teal-stronger);
+  --bs-btn-active-bg: var(--brand-teal-stronger);
+  --bs-btn-active-border-color: var(--brand-teal-stronger);
+  --bs-btn-disabled-bg: var(--brand-teal-strong);
+  --bs-btn-disabled-border-color: var(--brand-teal-strong);
+  --bs-btn-focus-shadow-rgb: var(--brand-teal-strong-rgb);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--brand-teal-strong);
+  --bs-btn-border-color: var(--brand-teal-strong);
+  --bs-btn-hover-color: var(--brand-surface);
+  --bs-btn-hover-bg: var(--brand-teal-strong);
+  --bs-btn-hover-border-color: var(--brand-teal-strong);
+  --bs-btn-active-color: var(--brand-surface);
+  --bs-btn-active-bg: var(--brand-teal-stronger);
+  --bs-btn-active-border-color: var(--brand-teal-stronger);
+  --bs-btn-disabled-color: var(--brand-teal-strong);
+  --bs-btn-disabled-border-color: var(--brand-teal-strong);
+  --bs-btn-focus-shadow-rgb: var(--brand-teal-strong-rgb);
+}
+
+/* White fields with a turquoise focus (border + very soft halo) everywhere. */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--brand-teal-strong);
+  box-shadow: 0 0 0 0.25rem var(--brand-focus-ring);
+}
+
+/* --- Dropdown menus and select lists: ONE highlight everywhere --------------------------------
+   Hover, keyboard focus and the selected item all use the logo turquoise (--brand-teal-strong)
+   with white text (6.0:1, WCAG AA). No Bootstrap grey or system blue. */
+.dropdown-menu {
+  --bs-dropdown-link-hover-bg: var(--brand-teal-strong);
+  --bs-dropdown-link-hover-color: var(--brand-on-teal);
+  --bs-dropdown-link-active-bg: var(--brand-teal-strong);
+  --bs-dropdown-link-active-color: var(--brand-on-teal);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:focus-visible,
+.dropdown-item:active,
+.dropdown-item.active,
+.dropdown-item.selected {
+  color: var(--brand-on-teal);
+  background-color: var(--brand-teal-strong);
+}
+
+/* "Cerrar sesión" is red at rest; on the turquoise highlight red text would be unreadable. */
+.dropdown-item.text-danger:hover,
+.dropdown-item.text-danger:focus,
+.dropdown-item.text-danger:active {
+  color: var(--brand-on-teal) !important;
+}
+
+/* Native <select>: the chosen option (every browser that lets options be styled). */
+.form-select option:checked {
+  color: var(--brand-on-teal);
+  background-color: var(--brand-teal-strong);
+}
+
+/* Customizable select (Chrome/Edge 135+): the open list is styleable, so hover and keyboard focus
+   get the brand colour too instead of the operating system's blue. Other browsers keep their
+   native list (with the rule above for the chosen option). */
+@supports (appearance: base-select) {
+  .form-select,
+  .form-select::picker(select) {
+    appearance: base-select;
+  }
+
+  /* Bootstrap's own chevron stays; the browser's second arrow would duplicate it. */
+  .form-select::picker-icon {
+    display: none;
+  }
+
+  .form-select::picker(select) {
+    margin-top: 0.25rem;
+    padding: 0.25rem 0;
+    background-color: var(--brand-surface);
+    border: 1px solid var(--brand-line);
+    border-radius: 10px;
+    box-shadow: var(--brand-shadow-soft);
+  }
+
+  .form-select option {
+    padding: 0.45rem 0.9rem;
+    color: var(--brand-ink);
+    background-color: var(--brand-surface);
+  }
+
+  .form-select option::checkmark {
+    display: none;
+  }
+
+  .form-select option:hover,
+  .form-select option:focus,
+  .form-select option:focus-visible,
+  .form-select option:checked {
+    color: var(--brand-on-teal);
+    background-color: var(--brand-teal-strong);
+    outline: none;
+  }
+}
+
+.alert-info {
+  --bs-alert-color: var(--brand-ink);
+  --bs-alert-bg: var(--brand-soft);
+  --bs-alert-border-color: var(--brand-line);
+  --bs-alert-link-color: var(--brand-teal-strong);
+}
+
+.app-page {
+  background-color: var(--brand-page);
+}
+
+/* Header: same identity as the login, with a thin brand line on top. */
+.app-header {
+  border-top: 3px solid var(--brand-teal);
+}
+
+.app-header .app-title,
+.app-page .card h2 {
+  color: var(--brand-ink);
+}
+
+/* Cards: white, very soft shadow, discreet border. */
+.app-page .card {
+  background-color: var(--brand-surface);
+  border: 1px solid var(--brand-line-soft);
+  box-shadow: var(--brand-shadow-card) !important;
+}
+
+/* --- Responsive ----------------------------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+  /* Footer: the same three groups, stacked and centred. */
+  .site-footer-inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .site-footer-copy,
+  .site-footer-legal,
+  .site-footer-social {
+    justify-self: center;
+  }
+
+  .site-footer-links {
+    justify-content: center;
+  }
+
+  .access-shell {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .access-topbar {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Stacked: the access card first, then a compact presentation. */
+  .access-main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .access-card {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .access-aside {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .access-aside-slogan {
+    font-size: 1.75rem;
+  }
+
+  .access-aside-text {
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .brand-wordmark {
+    font-size: 1rem;
+  }
+
+  /* The larger login logo scales down in proportion on phones. */
+  .access-brand .brand-mark {
+    width: 30px;
+    height: 30px;
+  }
+
+  .access-brand .brand-wordmark {
+    font-size: 1.15rem;
+  }
+
+  .access-secondary-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .public-article {
+    padding: 1.5rem;
+  }
+}
+
+/* --- Contact page: support details | form (stacked on mobile) ------------------------------- */
+
+.public-main--wide {
+  max-width: 1040px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 2.5rem;
+  margin-top: 1.75rem;
+}
+
+.contact-info {
+  align-self: start;
+  padding: 1.5rem;
+  background-color: var(--brand-surface-muted);
+  border: 1px solid var(--brand-line-soft);
+  border-radius: 12px;
+}
+
+.contact-info-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-info h2,
+.contact-form-panel h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.demo-badge {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brand-teal-stronger);
+  background-color: var(--brand-soft);
+  border: 1px solid var(--brand-line);
+  border-radius: 999px;
+}
+
+.contact-details {
+  margin: 0 0 1.5rem;
+}
+
+.contact-details dt {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand-muted);
+}
+
+.contact-details dd {
+  margin: 0.15rem 0 0.9rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.contact-details a {
+  color: var(--brand-teal-strong);
+  text-decoration: none;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+.contact-incidents {
+  padding-top: 1.25rem;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--brand-line);
+}
+
+.contact-incidents h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.contact-incidents ul {
+  padding-left: 1.2rem;
+}
+
+.contact-warning {
+  font-weight: 600;
+}
+
+.contact-demo-note,
+.contact-required-note {
+  margin: 0.35rem 0 1rem;
+  font-size: 0.875rem;
+  color: var(--brand-muted);
+}
+
+.contact-field {
+  margin-bottom: 1rem;
+}
+
+.contact-form .form-label {
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.contact-form .form-control,
+.contact-form .form-select {
+  min-height: 46px;
+  background-color: var(--brand-surface);
+  border-color: var(--brand-line);
+  border-radius: 10px;
+}
+
+.contact-form textarea.form-control {
+  min-height: 170px;
+}
+
+/* Same specificity as the rule above, so the focus state must be repeated after it. */
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+  border-color: var(--brand-teal-strong);
+  box-shadow: 0 0 0 0.25rem var(--brand-focus-ring);
+}
+
+.contact-form .form-control.is-invalid,
+.contact-form .form-select.is-invalid {
+  border-color: var(--bs-form-invalid-border-color);
+}
+
+.contact-form .btn-access-primary {
+  margin-top: 0.5rem;
+}
+
+/* GDPR consent checkbox (brand colours, not Bootstrap blue) and first-layer information. */
+.form-check-input:checked {
+  background-color: var(--brand-teal-strong);
+  border-color: var(--brand-teal-strong);
+}
+
+.form-check-input:focus {
+  border-color: var(--brand-teal-strong);
+  box-shadow: 0 0 0 0.25rem var(--brand-focus-ring);
+}
+
+.contact-consent {
+  font-size: 0.9rem;
+}
+
+.contact-consent .form-check-input {
+  width: 1.15em;
+  height: 1.15em;
+  border-color: var(--brand-muted);
+}
+
+.contact-consent a {
+  font-weight: 600;
+}
+
+/* After a submission without consent the box is marked invalid; once the user ticks it, it is no
+   longer an error: brand colour and no error message (CSS only, the page needs no JavaScript). */
+.contact-consent .form-check-input.is-invalid:checked {
+  background-color: var(--brand-teal-strong);
+  border-color: var(--brand-teal-strong);
+}
+
+.contact-consent .form-check-input.is-invalid:checked ~ .form-check-label {
+  color: inherit;
+}
+
+.contact-consent .form-check-input.is-invalid:checked ~ .invalid-feedback {
+  display: none;
+}
+
+.contact-gdpr {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--brand-muted);
+  background-color: var(--brand-surface-muted);
+  border: 1px solid var(--brand-line-soft);
+  border-radius: 10px;
+}
+
+.contact-gdpr h3 {
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-ink);
+}
+
+.contact-gdpr dl {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.3rem 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.contact-gdpr dt {
+  font-weight: 600;
+  color: var(--brand-ink);
+}
+
+.contact-gdpr dd {
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  /* One column: support details first, then the form. */
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  .contact-gdpr dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact-gdpr dd {
+    margin-bottom: 0.4rem;
+  }
+}
+
+/* --- Result card: share buttons next to «Copiar» (same size, brand outline) -------------------- */
+.btn-share {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.55rem;
+}
