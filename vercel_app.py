@@ -1,2 +1,4 @@
-# Importamos directamente usando la ruta completa del monorepositorio
-from ai_sales_assistant.app.main import app
+import sys
+import os
+
+from app.main import app
