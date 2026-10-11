@@ -18,15 +18,16 @@
 <p align="center">
   <img src="https://shields.io" alt="Python">
   <img src="https://shields.io" alt="FastAPI">
-  <img src="https://img.shields.io/badge/SQLAlchemy-ORM-red?style=for-the-badge" alt="SQLAlchemy">
-  <img src="https://img.shields.io/badge/Pydantic-v2-E92063?style=for-the-badge" alt="Pydantic">
+  <img src="https://shields.io" alt="SQLAlchemy">
+  <img src="https://shields.io" alt="Pydantic">
   <img src="https://shields.io" alt="PostgreSQL">
   <img src="https://shields.io" alt="Docker">
-  <img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge" alt="OpenAI">
-  <img src="https://img.shields.io/badge/RAG-Future-orange?style=for-the-badge" alt="RAG">
-  <img src="https://img.shields.io/badge/MCP-Future-success?style=for-the-badge" alt="MCP">
-  <img src="https://img.shields.io/badge/SDD-Spec--Driven_Development-darkgreen?style=for-the-badge" alt="SDD">
+  <img src="https://shields.io" alt="OpenAI">
+  <img src="https://shields.io" alt="RAG">
+  <img src="https://shields.io" alt="MCP">
+  <img src="https://shields.io" alt="SDD">
 </p>
+
 
 ---
 
