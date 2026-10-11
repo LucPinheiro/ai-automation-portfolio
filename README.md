@@ -1,18 +1,10 @@
-# 🤖 AI Sales Assistant – Intelligent Commercial Assistant
+# 🤖 AI Sales Assistant - Intelligent Commercial Assistant
 
 <p align="center">
-  <a href="./README.md">
-    <img src="https://shields.io" alt="English">
-  </a>
-  <a href="./README.es.md">
-    <img src="https://shields.io" alt="Español">
-  </a>
-  <a href="./README.pt.md">
-    <img src="https://shields.io" alt="Português">
-  </a>
-  <a href="./README.fr.md">
-    <img src="https://shields.io" alt="Français">
-  </a>
+  <a href="./README.md"><img src="https://shields.io" alt="English"></a>
+  <a href="./README.es.md"><img src="https://shields.io" alt="Español"></a>
+  <a href="./README.pt.md"><img src="https://shields.io" alt="Português"></a>
+  <a href="./README.fr.md"><img src="https://shields.io" alt="Francais"></a>
 </p>
 
 <p align="center">
@@ -23,15 +15,15 @@
   <img src="https://shields.io" alt="PostgreSQL">
   <img src="https://shields.io" alt="Docker">
   <img src="https://shields.io" alt="OpenAI">
-  <img src="https://shields.io" alt="RAG">
+  <img src="https://shields.io🧠-orange?style=flat" alt="RAG">
   <img src="https://shields.io" alt="MCP">
   <img src="https://shields.io" alt="SDD">
 </p>
 
-
 ---
 
-# 📖 Description
+## 📝 Description
+
 
 **AI Sales Assistant** is an AI-powered web application built with **FastAPI** that helps sales teams generate professional business communications quickly and consistently.
 
