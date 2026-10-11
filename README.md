@@ -1,39 +1,31 @@
 # 🤖 AI Sales Assistant – Intelligent Commercial Assistant
 
-
 <p align="center">
-
-<a href="./README.md">
-    <img src="https://img.shields.io/badge/🇬🇧-English-blue?style=for-the-badge" alt="English">
-</a>
-
-<a href="./README.es.md">
-    <img src="https://img.shields.io/badge/🇪🇸-Español-red?style=for-the-badge" alt="Español">
-</a>
-
-<a href="./README.pt.md">
-    <img src="https://img.shields.io/badge/🇵🇹-Português-green?style=for-the-badge" alt="Português">
-</a>
-
-<a href="./README.fr.md">
-    <img src="https://img.shields.io/badge/🇫🇷-Français-purple?style=for-the-badge" alt="Français">
-</a>
-
+  <a href="./README.md">
+    <img src="https://shields.io" alt="English">
+  </a>
+  <a href="./README.es.md">
+    <img src="https://shields.io" alt="Español">
+  </a>
+  <a href="./README.pt.md">
+    <img src="https://shields.io" alt="Português">
+  </a>
+  <a href="./README.fr.md">
+    <img src="https://shields.io" alt="Français">
+  </a>
 </p>
 
 <p align="center">
-
-![](https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
-![](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge\&logo=fastapi\&logoColor=white)
-![](https://img.shields.io/badge/SQLAlchemy-ORM-red?style=for-the-badge)
-![](https://img.shields.io/badge/Pydantic-v2-E92063?style=for-the-badge)
-![](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge\&logo=postgresql\&logoColor=white)
-![](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
-![](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge)
-![](https://img.shields.io/badge/RAG-Future-orange?style=for-the-badge)
-![](https://img.shields.io/badge/MCP-Future-success?style=for-the-badge)
-![](https://img.shields.io/badge/SDD-Spec--Driven_Development-darkgreen?style=for-the-badge)
-
+  <img src="https://shields.io" alt="Python">
+  <img src="https://shields.io" alt="FastAPI">
+  <img src="https://img.shields.io/badge/SQLAlchemy-ORM-red?style=for-the-badge" alt="SQLAlchemy">
+  <img src="https://img.shields.io/badge/Pydantic-v2-E92063?style=for-the-badge" alt="Pydantic">
+  <img src="https://shields.io" alt="PostgreSQL">
+  <img src="https://shields.io" alt="Docker">
+  <img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge" alt="OpenAI">
+  <img src="https://img.shields.io/badge/RAG-Future-orange?style=for-the-badge" alt="RAG">
+  <img src="https://img.shields.io/badge/MCP-Future-success?style=for-the-badge" alt="MCP">
+  <img src="https://img.shields.io/badge/SDD-Spec--Driven_Development-darkgreen?style=for-the-badge" alt="SDD">
 </p>
 
 ---
@@ -43,7 +35,6 @@
 **AI Sales Assistant** is an AI-powered web application built with **FastAPI** that helps sales teams generate professional business communications quickly and consistently.
 
 The project follows modern software engineering practices including:
-
 * Spec-Driven Development (SDD)
 * Clean Architecture
 * Repository Pattern
@@ -58,28 +49,23 @@ The objective is to build a production-ready AI application capable of evolving 
 # ✨ Features
 
 Generate automatically:
-
 * 📧 Commercial emails
 * 📄 Sales proposals
 * 🔄 Follow-up emails
 * 💬 WhatsApp messages
 * 📝 Customer summaries
 
-Using:
-
-* Customer
-* Company
-* Industry
-* Product or Service
-* Customer Needs
-* Language
-* Tone of Voice
+Using input filters:
+* Customer, Company, and Industry details
+* Product or Service features
+* Customer Needs & Pain points
+* Target Language & Tone of Voice
 
 ---
 
 # 🏗 Architecture
 
-```
+```text
 Frontend
      │
      ▼
@@ -104,7 +90,6 @@ SQLite / PostgreSQL
 
 ```text
 ai-sales-assistant/
-
 ├── app/
 │   ├── api/
 │   ├── routers/
@@ -120,13 +105,11 @@ ai-sales-assistant/
 │   ├── static/
 │   ├── utils/
 │   └── main.py
-│
 ├── docs/
 │   ├── specs/
 │   ├── adr/
 │   ├── diagrams/
 │   └── images/
-│
 ├── tests/
 ├── docker/
 ├── README.md
@@ -138,284 +121,82 @@ ai-sales-assistant/
 
 # ⚙ Technology Stack
 
-## Backend
-
-* Python 3.12+
-* FastAPI
-* SQLAlchemy
-* Pydantic
-* Alembic
-
-## Frontend
-
-* HTML5
-* Bootstrap 5
-* JavaScript
-* Jinja2
-
-## Database
-
-* SQLite
-* PostgreSQL
-
-## Artificial Intelligence
-
-* OpenAI API
-* Prompt Engineering
-* Future RAG integration
-* Future MCP integration
-
-## Infrastructure
-
-* Docker
-* Docker Compose
-* Git
-* GitHub
+* **Backend:** Python 3.12+, FastAPI, SQLAlchemy, Pydantic, Alembic
+* **Frontend:** HTML5, Bootstrap 5, JavaScript, Jinja2 Templates
+* **Database:** SQLite (Development) / PostgreSQL (Production)
+* **AI & Core:** OpenAI API, Advanced Prompt Engineering, Vector Embeddings
+* **Infrastructure:** Docker, Docker Compose, Git, GitHub Actions
 
 ---
 
-# 📑 Documentation
+# 📑 Documentation & Specs
 
-This project follows **Spec-Driven Development (SDD)**.
+This project strictly adheres to **Spec-Driven Development (SDD)**.
 
-## Specifications
-
-* Product Vision
-* Functional Requirements
-* Non-Functional Requirements
-* Use Cases
-* Domain Model
-* Database Design
-* API Design
-* Architecture
-* Folder Structure
-* Roadmap
-
-## Architecture Decision Records (ADR)
-
-* Clean Architecture
-* FastAPI
-* Repository Pattern
-* Service Layer
-* SQLAlchemy
-* Prompt Engineering
-* Configuration Management
-* Database Strategy
-* Future RAG
+* **Specifications:** Product Vision, Functional & Non-Functional Requirements, Use Cases, Domain Model, Database Strategy, API Contracts, and System Architecture Design.
+* **Architecture Decision Records (ADR):** Documented patterns for Clean Architecture adoption, Repository & Service patterns separation, Configuration Strategy, and Future Knowledge-base Retrieval (RAG).
 
 ---
 
 # 🚀 Roadmap
 
-HEAD
+### 📦 Portfolio Overview
 
 | Project | Description | Status |
-|----------|-------------|--------|
+| :--- | :--- | :--- |
 | [🤖 AI Sales Assistant](./ai_sales_assistant/) | Intelligent commercial assistant | ✅ Done |
 | 📄 AI Document Assistant | OCR + Intelligent Document Processing | 📅 Planned |
 | 📚 Enterprise RAG Chatbot | Enterprise knowledge assistant | 📅 Planned |
 | 📊 AI Forecast Dashboard | AI-powered analytics dashboard | 📅 Planned |
 | 🗺 Smart Route Planner | Intelligent route optimization | 📅 Planned |
-| 💻 AI Developer Assistant | AI assistant for developers | 📅 Planned |
-| ✉ AI Email Generator | Business email generation | 📅 Planned |
-| 🎙 AI Meeting Assistant | Meeting summaries & transcription | 📅 Planned |
-| 📄 AI Resume Analyzer | CV analysis with LLMs | 📅 Planned |
-| 🛍 AI Product Recommender | Recommendation engine | 📅 Planned |
-| 📈 AI Business Assistant | Business reporting assistant | 📅 Planned |
-| 🎓 AI Learning Assistant | Intelligent learning platform | 📅 Planned |
-=======
-## Version 1
 
-* AI Content Generation
-* REST API
-* SQLite
-* Bootstrap UI
-* Swagger
-
-## Version 2
-
-* PostgreSQL
-* Docker
-* Authentication
-* User Management
-
-## Version 3
-
-* Customer Management
-* PDF Export
-* Word Export
-* Dashboard
-
-## Version 4
-
-* RAG
-* Ollama
-* Hugging Face
-* Embeddings
-
-## Version 5
-
-* Odoo CRM Integration
-* MCP
-* AI Agents
-* Enterprise Platform
->>>>>>> ai-sales-assistant
-
+### 🛠 Product Versioning
+* **Version 1 (Core):** AI Content Generation engine, REST API layout, SQLite infrastructure, Bootstrap web UI, Swagger baseline.
+* **Version 2 (Security):** PostgreSQL migration, Dockerization, JWT Authentication workflow, User management roles.
+* **Version 3 (Enterprise Features):** Customer lifecycle logs, PDF/Word document generation, Sales performance analytics.
+* **Version 4 (Intelligence):** RAG systems, local LLM architectures via Ollama, Custom embedding spaces.
+* **Version 5 (Integrations):** Native Odoo CRM integration, Model Context Protocol (MCP) toolkits, Multi-agent collaboration frameworks.
 
 ---
 
 # 📊 Project Status
 
-| Phase          | Status |
-| -------------- | ------ |
-| Analysis       | ✅      |
-| Specifications | ✅      |
-| Architecture   | ✅      |
-| Backend        | 🚧     |
-| Frontend       | ⏳      |
-| Testing        | ⏳      |
-| Deployment     | ⏳      |
+| Phase | Status |
+| :--- | :--- |
+| Analysis | ✅ Done |
+| Specifications | ✅ Done |
+| Architecture | ✅ Done |
+| Backend | 🚧 In Progress |
+| Frontend | ⏳ Pending |
+| Testing | ⏳ Pending |
+| Deployment | ⏳ Pending |
 
 ---
 
-# 🎓 Learning Goals
+# 🎓 Focus & Learning Goals
 
-This project is focused on learning and demonstrating practical experience in:
+* Real-world AI Software Engineering workflows.
+* Advanced FastAPI framework design and REST API design.
+* Scalable relational models using SQLAlchemy ORM.
+* Implementations of Prompt Engineering, Retrieval-Augmented Generation (RAG), and Model Context Protocol (MCP).
+* Production-grade infrastructure pipelines via Docker and PostgreSQL.
 
-<<<<<<< HEAD
-ai-automation-portfolio/
+***
 
-│
-├── docs/
-├── roadmap/
-├── architecture/
-├── diagrams/
-├── templates/
-├── assets/
-└── README.md
+**Luciana Pinheiro**  
+*AI Software Engineer • Full Stack Developer • Odoo Consultant*
 
-```
+Encuéntrame en:
+* [GitHub](https://github.com)
+* [Portfolio](https://lucpinheiro.github.io/)
+* [LinkedIn](https://linkedin.com)
 
-Each AI project lives in its own repository and follows the same engineering standards.
-
----
-
-# 📚 Portfolio Roadmap
-
-## Phase 1
-
-- AI Sales Assistant
-- AI Document Assistant
-- Forecast Dashboard
-
----
-
-## Phase 2
-
-- Enterprise RAG
-- Smart Route Planner
-- AI Developer Assistant
-
----
-
-## Phase 3
-
-- AI Business Assistant
-- AI Meeting Assistant
-- AI Learning Assistant
-
----
-
-## Phase 4
-
-- MCP Integrations
-- AI Agents
-- Multi-Agent Systems
-- Odoo AI Integration
-
----
-
-# 🎯 Focus Areas
-
-✔ AI Software Engineering
-
-✔ Python Backend Development
-
-✔ FastAPI
-
-✔ REST APIs
-
-✔ LLM Applications
-
-✔ AI Agents
-
-✔ Prompt Engineering
-
-✔ RAG
-
-✔ MCP
-
-✔ Docker
-
-✔ PostgreSQL
-
-✔ Enterprise Automation
-
-✔ Clean Architecture
-
-✔ Spec-Driven Development
-
----
-
-# 🌍 Portfolio Website
-
-> https://lucpinheiro.github.io/
-=======
-* AI Software Engineering
-* FastAPI
-* SQLAlchemy
-* Clean Architecture
-* Prompt Engineering
-* REST APIs
-* Docker
-* PostgreSQL
-* RAG
-* MCP
-* AI Agents
-* DevOps
->>>>>>> ai-sales-assistant
-
----
-
-# 👩‍💻 Author
-
-**Luciana Pinheiro**
-
-AI Software Engineer • Full Stack Developer • Odoo Consultant
-
-GitHub:
-
-https://github.com/LucPinheiro
-
-Portfolio:
-
-https://lucpinheiro.github.io/
-
-LinkedIn:
-
-https://linkedin.com/in/lupinheiroDev
-
----
+***
 
 # 📄 License
 
 This project is licensed under the **MIT License**.
 
----
-
 <p align="center">
-
-⭐ Part of the **AI Automation Portfolio**.
-
+  ⭐ Part of the <b><a href="https://github.com/ai-automation-portfolio">AI Automation Portfolio</a></b>.
 </p>
----
