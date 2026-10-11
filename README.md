@@ -207,7 +207,7 @@ This project follows **Spec-Driven Development (SDD)**.
 
 # 🚀 Roadmap
 
-<<<<<<< HEAD
+HEAD
 
 | Project | Description | Status |
 |----------|-------------|--------|
@@ -418,3 +418,4 @@ This project is licensed under the **MIT License**.
 ⭐ Part of the **AI Automation Portfolio**.
 
 </p>
+---
