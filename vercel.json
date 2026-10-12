@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "ai_sales_assistant/app/api.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
+      }
     }
   ],
   "routes": [
