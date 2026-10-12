@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "functions": {
-    "vercel_app.py": {
-      "runtime": "@vercel/python"
+  "builds": [
+    {
+      "src": "ai_sales_assistant/app/api.py",
+      "use": "@vercel/python"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "vercel_app.py"
+      "dest": "ai_sales_assistant/app/api.py"
     }
   ]
 }
