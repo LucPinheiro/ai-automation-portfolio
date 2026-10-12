@@ -1,7 +1,10 @@
 import sys
 import os
 
-# Fuerza a Python a reconocer la subcarpeta del asistente
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'ai_sales_assistant'))
+# Forzamos a la máquina virtual a entender que 'app' está dentro de la subcarpeta
+root_dir = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(root_dir, 'ai_sales_assistant'))
+sys.path.insert(0, os.path.join(root_dir, 'ai_sales_assistant', 'app'))
 
-from app.api import app
+# Ahora importamos de forma segura
+from app.main import app
