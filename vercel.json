@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "ai_sales_assistant/app/api.py",
+      "src": "vercel_app.py",
       "use": "@vercel/python",
       "config": {
         "runtime": "python3.9"
@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "ai_sales_assistant/app/api.py"
+      "dest": "vercel_app.py"
     }
   ]
 }
